@@ -6,7 +6,7 @@ QuickNotes is a browser-based sticky note app where you can create, edit, move, 
 
 ##  About This Project
 
-This project was created for a school assignment. 
+This project was created for a school project. 
 The starting code was provided and included the basic HTML, CSS, and some JavaScript files. My task was to understand how the app works, make improvements, and complete the features.
 
 - DOM manipulation
