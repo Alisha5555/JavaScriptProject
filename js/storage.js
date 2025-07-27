@@ -1,10 +1,3 @@
-/**
- * Testing Comment
- */
-
-/**
- * test
- */
 
 /**
  * storage.js - Local storage management

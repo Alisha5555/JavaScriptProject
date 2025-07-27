@@ -19,13 +19,15 @@ export class Note {
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
      */
-    constructor({ id = null, content = '', x = 0, y = 0, color = null }) {
+    constructor({ id = null, content = '', x = 0, y = 0, color = null, timestamp = null }) {
         this.id = id || this.generateId();
         this.content = content;
         this.x = x;
         this.y = y;
         this.color = color || this.getRandomColor();
+        this.timestamp = timestamp || new Date().toISOString();
         this.element = null;
+
     }
 
     /**
@@ -52,7 +54,8 @@ export class Note {
         // Get the note template
         const template = document.getElementById('note-template');
         const noteElement = document.importNode(template.content, true).querySelector('.note');
-        
+        const ts = document.createElement('div');
+
         // Set note properties
         noteElement.id = this.id;
         noteElement.classList.add(this.color);
@@ -63,6 +66,10 @@ export class Note {
         const contentElement = noteElement.querySelector('.note-content');
         contentElement.textContent = this.content;
         
+        ts.className = 'note-timestamp';
+        ts.textContent = new Date(this.timestamp).toLocaleString();
+        noteElement.appendChild(ts);
+
         // Store reference to the element
         this.element = noteElement;
         return noteElement;
@@ -106,7 +113,8 @@ export class Note {
             content: this.content,
             x: this.x,
             y: this.y,
-            color: this.color
+            color: this.color,
+            timestamp: this.timestamp
         };
     }
 
@@ -146,6 +154,7 @@ export class Note {
 export class NoteManager {
     constructor() {
         this.notes = new Map();
+        
     }
 
     /**
