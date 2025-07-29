@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         // Render the loaded notes
-        renderAllNotes(noteManager);
+        renderAllNotes(noteManager.getAllNotes(), noteManager);
     } else {
         console.log('No saved notes found, starting with empty board');
     }
@@ -41,6 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
         saveNotes(notes);
     });
     
+    // Sorting buttons 
+
+    //Sort Ascending
+    document.getElementById('sort-asc').addEventListener('click', () => {
+        //console.log("CLICKED ASC")
+        const notes = noteManager.getAllNotes();
+        notes.sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp))
+        renderAllNotes(notes, noteManager);
+    });
+    
+    //Sort Descending
+    document.getElementById('sort-desc').addEventListener('click', () => {
+        const notes = noteManager.getAllNotes();
+        notes.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp))
+        renderAllNotes(notes, noteManager);
+    });
+
+
     console.log('QuickNotes application initialized successfully');
     
     // For development and debugging purposes

@@ -213,7 +213,7 @@ export function setupAutoSave(noteManager) {
  * Render all notes from manager to the board
  * @param {NoteManager} noteManager - The note manager instance
  */
-export function renderAllNotes(noteManager) {
+export function renderAllNotes(notesArray, noteManager) {
     const noteBoard = document.getElementById('note-board');
     
     // Clear existing notes
@@ -223,9 +223,16 @@ export function renderAllNotes(noteManager) {
     });
     
     // Render all notes
-    noteManager.getAllNotes().forEach(note => {
-        const noteElement = note.createElement();
-        setupNoteEventListeners(noteElement, note, noteManager);
-        noteBoard.appendChild(noteElement);
+    //noteManager.getAllNotes().forEach(note => {
+    //    const noteElement = note.createElement();
+    //    setupNoteEventListeners(noteElement, note, noteManager);
+    //    noteBoard.appendChild(noteElement);
+    //});
+
+    // Render all notes with array
+    notesArray.forEach(note => {
+        const element = note.createElement();
+        setupNoteEventListeners(element, note, noteManager);
+        noteBoard.appendChild(element);
     });
 }
