@@ -66,6 +66,20 @@ export class Note {
         const contentElement = noteElement.querySelector('.note-content');
         contentElement.textContent = this.content;
         
+        if (this.imageUrl) {
+            const img = document.createElement('img');
+            img.src = this.imageUrl;
+            img.alt = 'Note Image';
+            img.style.maxWidth = '100%';
+            
+            const timestampElement = noteElement.querySelector('.note-timestamp');
+            if (timestampElement) {
+                noteElement.insertBefore(img, timestampElement);
+            } else {
+                noteElement.appendChild(img);
+            }
+        }
+
         ts.className = 'note-timestamp';
         ts.textContent = new Date(this.timestamp).toLocaleString();
         noteElement.appendChild(ts);
@@ -97,10 +111,7 @@ export class Note {
     updateContent(content) {
         this.content = content;
         
-        if (this.element) {
-            const contentElement = this.element.querySelector('.note-content');
-            contentElement.textContent = content;
-        }
+        
     }
 
     /**

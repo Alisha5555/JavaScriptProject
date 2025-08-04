@@ -119,11 +119,20 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
     noteElement.querySelector('.image-btn').addEventListener('click', ()=>{
         const imageUrl = prompt("Enter an image URL:");
         if (imageUrl) {
+            note.imageUrl = imageUrl;
+            
             const img = document.createElement('img');
+            
             img.src = imageUrl;
             img.alt = 'Note Image';
             img.style.maxWidth = '100%';
-            noteElement.appendChild(img);
+
+            const timestampElement = noteElement.querySelector('.note-timestamp');
+            if (timestampElement) {
+                noteElement.insertBefore(img, timestampElement);
+            } else {
+                noteElement.appendChild(img);
+            }
         }
     });
 
