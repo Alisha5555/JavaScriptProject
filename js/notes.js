@@ -19,7 +19,7 @@ export class Note {
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
      */
-    constructor({ id = null, content = '', x = 0, y = 0, color = null, timestamp = null }) {
+    constructor({ id = null, content = '', x = 0, y = 0, color = null, timestamp = null, imageUrl = '' }) {
         this.id = id || this.generateId();
         this.content = content;
         this.x = x;
@@ -27,7 +27,7 @@ export class Note {
         this.color = color || this.getRandomColor();
         this.timestamp = timestamp || new Date().toISOString();
         this.element = null;
-
+        this.imageUrl = imageUrl || '';
     }
 
     /**
@@ -114,7 +114,8 @@ export class Note {
             x: this.x,
             y: this.y,
             color: this.color,
-            timestamp: this.timestamp
+            timestamp: this.timestamp,
+            imageUrl: this.imageUrl
         };
     }
 
