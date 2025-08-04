@@ -172,3 +172,10 @@ footer {
         min-height: 160px;
     }
 }
+
+.note-timestamp {
+    font-size: 0.75em;
+    margin-top: 4px;       /* Space above timestamp */
+    text-align: center;    /* Center under image */
+    display: block;
+}
